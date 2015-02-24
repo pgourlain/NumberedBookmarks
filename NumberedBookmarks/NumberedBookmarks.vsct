@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--  This is the file that defines the actual layout and type of the commands.
+        It is divided in different sections (e.g. command definition, command
+        placement, ...), with each defining a specific set of properties.
+        See the comment before each section for more details about how to
+        use it. -->
+
+  <!--  The VSCT compiler (the tool that translates this file into the binary 
+        format that VisualStudio will consume) has the ability to run a preprocessor 
+        on the vsct file; this preprocessor is (usually) the C++ preprocessor, so 
+        it is possible to define includes and macros with the same syntax used 
+        in C++ files. Using this ability of the compiler here, we include some files 
+        defining some of the constants that we will use inside the file. -->
+
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h" />
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h" />
+
+  <!--Definition of some VSCT specific constants. In this sample we use it for the IDs inside the guidOfficeIcon group. -->
+  <!--<Extern href="msobtnid.h" xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" />-->
+
+
+
+
+  <!--The Commands section is where we the commands, menus and menu groups are defined.
+      This section uses a Guid to identify the package that provides the command defined inside it. -->
+  <Commands package="guidNumberedBookmarksPkg">
+    <!-- Inside this section we have different sub-sections: one for the menus, another  
+    for the menu groups, one for the buttons (the actual commands), one for the combos 
+    and the last one for the bitmaps used. Each element is identified by a command id that  
+    is a unique pair of guid and numeric identifier; the guid part of the identifier is usually  
+    called "command set" and is used to group different command inside a logically related  
+    group; your package should define its own command set in order to avoid collisions  
+    with command ids defined by other packages. -->
+
+    <Menus>
+      <Menu guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenu" priority="0x800" type="Menu">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="TopLevelMenuGroup" />
+        <CommandFlag>AlwaysCreate</CommandFlag>
+        <Strings>
+          <CommandName>Numbered bookmarks</CommandName>
+          <ButtonText>Numbered bookmarks</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
+    
+    <!-- In this section you can define new menu groups. A menu group is a container for 
+         other menus or buttons (commands); from a visual point of view you can see the 
+         group as the part of a menu contained between two lines. The parent of a group 
+         must be a menu. -->
+    <Groups>
+      <!-- MyTopLevelMenuGroup -->
+      <Group guid="guidNumberedBookmarksCmdSet" id="TopLevelMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
+      </Group>
+
+      <!-- group logique du sous menu-->
+      <Group guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroup" priority="0x0100">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenu" />
+      </Group>
+      <Group guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroupGoto" priority="0x0200">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenu" />
+      </Group>
+    </Groups>
+    
+    <!--Buttons section. -->
+    <!--This section defines the elements the user can interact with, like a menu command or a button 
+        or combo box in a toolbar. -->
+    <Buttons>
+      <!--<Button guid="guidNumberedBookmarksCmdSet" id="cmdOne" priority="0x0100" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_EDIT_OBJECTS"/>
+        <Strings>
+          <CommandName>cmdOne</CommandName>
+          <ButtonText>Define first numbered bookmark</ButtonText>
+        </Strings>
+      </Button>-->
+      <!--<Button guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenu" priority="0x0100" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_EDIT_OBJECTS"/>
+        <Strings>
+          <CommandName>NumberedBookmarksMainMenu</CommandName>
+          <ButtonText>NumberedBookmarksMainMenu</ButtonText>
+        </Strings>
+      </Button>-->
+
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdOne" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroup" />
+        <Strings>
+          <CommandName>cmdOne</CommandName>
+          <ButtonText>Define bookmark 1</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdTwo" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroup" />
+        <Strings>
+          <CommandName>cmdTwo</CommandName>
+          <ButtonText>Define bookmark 2</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdThree" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroup" />
+        <!--<Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>-->
+        <Strings>
+          <CommandName>cmdThree</CommandName>
+          <ButtonText>Define bookmark 3</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdFour" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroup" />
+        <Strings>
+          <CommandName>cmdFour</CommandName>
+          <ButtonText>Define bookmark 4</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdFive" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroup" />
+        <Strings>
+          <CommandName>cmdFive</CommandName>
+          <ButtonText>Define bookmark 5</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdSix" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroup" />
+        <Strings>
+          <CommandName>cmdSix</CommandName>
+          <ButtonText>Define bookmark 6</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdSeven" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroup" />
+        <Strings>
+          <CommandName>cmdSeven</CommandName>
+          <ButtonText>Define bookmark 7</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdEight" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroup" />
+        <Strings>
+          <CommandName>cmdEight</CommandName>
+          <ButtonText>Define bookmark 8</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdNine" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroup" />
+        <Strings>
+          <CommandName>cmdNine</CommandName>
+          <ButtonText>Define bookmark 9</ButtonText>
+        </Strings>
+      </Button>
+
+      
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdGotoOne" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroupGoto" />
+        <Strings>
+          <CommandName>cmdGotoOne</CommandName>
+          <ButtonText>Goto bookmark 1</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdGotoTwo" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroupGoto" />
+        <Strings>
+          <CommandName>cmdGotoTwo</CommandName>
+          <ButtonText>Goto bookmark 2</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdGotoThree" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroupGoto" />
+        <Strings>
+          <CommandName>cmdGotoThree</CommandName>
+          <ButtonText>Goto bookmark 3</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdGotoFour" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroupGoto" />
+        <Strings>
+          <CommandName>cmdvFour</CommandName>
+          <ButtonText>Goto bookmark 4</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdGotoFive" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroupGoto" />
+        <Strings>
+          <CommandName>cmdGotoFive</CommandName>
+          <ButtonText>Goto bookmark 5</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdGotoSix" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroupGoto" />
+        <Strings>
+          <CommandName>cmdGotoSix</CommandName>
+          <ButtonText>Goto bookmark 6</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdGotoSeven" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroupGoto" />
+        <Strings>
+          <CommandName>cmdGotoSeven</CommandName>
+          <ButtonText>Goto bookmark 7</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdGotoEight" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroupGoto" />
+        <Strings>
+          <CommandName>cmdGotoEight</CommandName>
+          <ButtonText>Goto bookmark 8</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidNumberedBookmarksCmdSet" id="cmdGotoNine" priority="0x0100" type="Button">
+        <Parent guid="guidNumberedBookmarksCmdSet" id="NumberedBookmarksMainMenuGroupGoto" />
+        <Strings>
+          <CommandName>cmdGotoNine</CommandName>
+          <ButtonText>Goto bookmark 9</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+   
+    <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
+    <Bitmaps>
+      <!--  The bitmap id is defined in a way that is a little bit different from the others: 
+            the declaration starts with a guid for the bitmap strip, then there is the resource id of the 
+            bitmap strip containing the bitmaps and then there are the numeric ids of the elements used 
+            inside a button definition. An important aspect of this declaration is that the element id 
+            must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
+
+    </Bitmaps>
+ 
+  </Commands>
+
+  <VisibilityConstraints>
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdOne" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdTwo" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdThree" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdFour" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdFive" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdSix" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdSeven" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdEight" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdNine" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdGotoOne" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdGotoTwo" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdGotoThree" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdGotoFour" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdGotoFive" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdGotoSix" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdGotoSeven" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdGotoEight" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidNumberedBookmarksCmdSet" id="cmdGotoNine" context="GUID_TextEditorFactory" />
+  </VisibilityConstraints>
+  
+  <KeyBindings>
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdOne" key1="1" mod1="CONTROL SHIFT" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdTwo" key1="2" mod1="CONTROL SHIFT" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdThree" key1="3" mod1="CONTROL SHIFT" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdFour" key1="4" mod1="CONTROL SHIFT" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdFive" key1="5" mod1="CONTROL SHIFT" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdSix" key1="6" mod1="CONTROL SHIFT" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdSeven" key1="7" mod1="CONTROL SHIFT" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdEight" key1="8" mod1="CONTROL SHIFT" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdNine" key1="9" mod1="CONTROL SHIFT" />
+    <!--<KeyBinding guid="guidNumberedBookmarksCmdSet" editor="guidVSStd97"
+                id="Two" key1="VK_F2" mod1="Control Shift"/>
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="guidVSStd97"
+                id="Three" key1="VK_F3" mod1="Control Shift"/>
+                -->
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdGotoOne" key1="1" mod1="CONTROL" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdGotoTwo" key1="2" mod1="CONTROL" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdGotoThree" key1="3" mod1="CONTROL" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdGotoFour" key1="4" mod1="CONTROL" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdGotoFive" key1="5" mod1="CONTROL" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdGotoSix" key1="6" mod1="CONTROL" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdGotoSeven" key1="7" mod1="CONTROL" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdGotoEight" key1="8" mod1="CONTROL" />
+    <KeyBinding guid="guidNumberedBookmarksCmdSet" editor="GUID_TextEditorFactory" id="cmdGotoNine" key1="9" mod1="CONTROL" />
+  </KeyBindings>
+
+  
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="guidNumberedBookmarksPkg" value="{47ccc721-c51c-40e1-bb7f-7c202cf4f49c}" />
+    
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="guidNumberedBookmarksCmdSet" value="{a279476c-595a-43da-8239-0723f2609fe8}">
+
+      <IDSymbol name="NumberedBookmarksMainMenu" value="0x1020" />
+      <IDSymbol name="NumberedBookmarksMainMenuGroup" value="0x1019" />
+      <IDSymbol name="NumberedBookmarksMainMenuGroupGoto" value="0X1018" />
+      
+      <IDSymbol name="cmdOne" value="0x1021" />
+      <IDSymbol name="cmdTwo" value="0x1022" />
+      <IDSymbol name="cmdThree" value="0x1023" />
+      <IDSymbol name="cmdFour" value="0x1024" />
+      <IDSymbol name="cmdFive" value="0x1025" />
+      <IDSymbol name="cmdSix" value="0x1026" />
+      <IDSymbol name="cmdSeven" value="0x1027" />
+      <IDSymbol name="cmdEight" value="0x1028" />
+      <IDSymbol name="cmdNine" value="0x1029" />
+
+      <IDSymbol name="cmdGotoOne" value="0x1031" />
+      <IDSymbol name="cmdGotoTwo" value="0x1032" />
+      <IDSymbol name="cmdGotoThree" value="0x1033" />
+      <IDSymbol name="cmdGotoFour" value="0x1034" />
+      <IDSymbol name="cmdGotoFive" value="0x1035" />
+      <IDSymbol name="cmdGotoSix" value="0x1036" />
+      <IDSymbol name="cmdGotoSeven" value="0x1037" />
+      <IDSymbol name="cmdGotoEight" value="0x1038" />
+      <IDSymbol name="cmdGotoNine" value="0x1039" />
+      <IDSymbol name="TopLevelMenuGroup" value="0x1050" />
+    </GuidSymbol>
+  </Symbols>
+
+</CommandTable>
