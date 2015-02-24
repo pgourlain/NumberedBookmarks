@@ -14,6 +14,9 @@ namespace NumberedBookmarks
         public int OldLine { get; set; }
     }
 
+    /// <summary>
+    /// provide bookmark manager (one per document)
+    /// </summary>
     class NumberedBookmarksManager
     {
         ConcurrentDictionary<int, Bookmark> _dico = null;
@@ -26,7 +29,7 @@ namespace NumberedBookmarks
             }
         }
 
-        public int GetNumber(int line)
+        public IEnumerable<int> GetNumber(int line)
         {
             if (NumberedBookmarksGlobalManager.IsAcrossDocuments)
             {
@@ -39,7 +42,7 @@ namespace NumberedBookmarks
                     return NumberedBookmarksGlobalManager.GetNumber(_dico, buffer, line);
                 }
             }
-            return -1;
+            return new int[0];
         }
 
         public event EventHandler<NumberedBookmarksManagerEventArgs> BookmarksChanged;

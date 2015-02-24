@@ -39,7 +39,11 @@ namespace NumberedBookmarks
     [Guid(GuidList.guidNumberedBookmarksPkgString)]
     public sealed class NumberedBookmarksPackage : Package
     {
-        internal static NumberedBookmarksPackage Instance { get; set; }
+        /// <summary>
+        /// provides current instance of this package
+        /// </summary>
+        /// <returns></returns>
+        internal static NumberedBookmarksPackage Instance { get; private set; }
         /// <summary>
         /// Default constructor of the package.
         /// Inside this method you can place any initialization code that does not require 

@@ -18,6 +18,9 @@ namespace NumberedBookmarks
         public SnapshotPoint Point { get; set; }
     }
 
+    /// <summary>
+    /// global BookmarkManager that manage bookmark across all documents if configuration is specified
+    /// </summary>
     class NumberedBookmarksGlobalManager
     {
         static ConcurrentDictionary<int, Bookmark> _dico = new ConcurrentDictionary<int, Bookmark>();
@@ -94,8 +97,14 @@ namespace NumberedBookmarks
             }
         }
 
-
-        public static int GetNumber(ConcurrentDictionary<int, Bookmark> dico, ITextBuffer buffer, int line)
+        /// <summary>
+        /// return numbers for a line in document (textBuffer)
+        /// </summary>
+        /// <param name="dico"></param>
+        /// <param name="buffer"></param>
+        /// <param name="line"></param>
+        /// <returns></returns>
+        public static IEnumerable<int> GetNumber(ConcurrentDictionary<int, Bookmark> dico, ITextBuffer buffer, int line)
         {
             if (dico == null)
                 dico = _dico;
@@ -104,10 +113,10 @@ namespace NumberedBookmarks
                 if (item.Buffer == buffer)
                 {
                     if (item.Line == line)
-                        return item.KeyNumber;
+                        yield return item.KeyNumber;
                 }
             }
-            return -1;
+            yield break;
         }
 
 

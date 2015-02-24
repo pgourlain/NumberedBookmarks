@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.Text;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Utilities;
+using System.Linq;
 using System;
 using System.Diagnostics;
 
@@ -47,10 +48,9 @@ namespace NumberedBookmarks
                 foreach (SnapshotSpan span in spans)
                 {
                     var line = span.Start.GetContainingLine().LineNumber;
-                    var number = manager.GetNumber(line);
-                    if (number >= 0)
+                    if (manager.GetNumber(line).Any())
                     {
-                        yield return new TagSpan<NumberedBookmarkTag>(new SnapshotSpan(span.Start, 1), new NumberedBookmarkTag { Number = number });
+                        yield return new TagSpan<NumberedBookmarkTag>(new SnapshotSpan(span.Start, 1), new NumberedBookmarkTag { Numbers = manager.GetNumber(line).ToArray() });
                     }
                 }
             }
@@ -62,7 +62,7 @@ namespace NumberedBookmarks
 
     internal class NumberedBookmarkTag : IGlyphTag 
     {
-        public int Number { get; set; }
+        public int[] Numbers { get; set; }
     }
 
     [Export(typeof(ITaggerProvider))]
