@@ -137,8 +137,6 @@
     <Compile Include="Constants.cs" />
     <Compile Include="DocumentUtilities.cs" />
     <Compile Include="Guids.cs" />
-    <Compile Include="KeyProcessor\KeyBindingCommandFilter.cs" />
-    <Compile Include="KeyProcessor\NumberedBookmarksKeyProcessor.cs" />
     <Compile Include="KeyProcessor\NumberedBookmarksKeyProcessorProvider.cs" />
     <Compile Include="NumberedBookmarksGlobalManager.cs" />
     <Compile Include="NumberedBookmarksManager.cs" />
