@@ -7,6 +7,8 @@ using System.Collections.Concurrent;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Shell;
+using System.Globalization;
 
 namespace NumberedBookmarks
 {
@@ -71,8 +73,22 @@ namespace NumberedBookmarks
                         if (buffer == bmk.Buffer)
                         {
                             doc.Activate();
-                            wpfView.Caret.MoveTo(bmk.Point);
-                            wpfView.DisplayTextLineContainingBufferPosition(bmk.Point, wpfView.ViewportHeight / 2, ViewRelativePosition.Top);
+                            try
+                            {
+                                wpfView.Caret.MoveTo(bmk.Point);
+                                wpfView.DisplayTextLineContainingBufferPosition(bmk.Point, wpfView.ViewportHeight / 2, ViewRelativePosition.Top);
+                            }
+                            catch(Exception ex)
+                            {
+                                //send exception into task list window
+                                var errorProvider = new ErrorListProvider(NumberedBookmarksPackage.Instance);
+                                var t = new ErrorTask(ex);
+                                t.Line = bmk.Line;
+                                t.Column = 1;
+                                t.Document = doc.Name;
+                                t.Text = string.Format(CultureInfo.InvariantCulture, "Unable to go to bookmark #{0} : {1}", keyNumber, ex);
+                                errorProvider.Tasks.Add(t);
+                            }
                         }
                     }
                 }
