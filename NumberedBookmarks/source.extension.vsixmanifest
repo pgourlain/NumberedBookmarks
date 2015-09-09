@@ -3,7 +3,7 @@
   <Identifier Id="NumberedBookmarks.Microsoft.5807ee13-b6e1-464a-927f-c22d0a59c50c">
     <Name>NumberedBookmarks</Name>
     <Author>Pierrick Gourlain</Author>
-    <Version>1.4.4</Version>
+    <Version>1.4.5</Version>
     <Description xml:space="preserve">This package provides you the possibility to toogle numbered bookmarks, using shortcuts (ctrl-shift-1, ctrl-shift-2, ... ctrl-shift-0) to place a bookmark and (ctrl-1, ctrl-2, ctrl-3,...ctrl-0) to jump to a specific bookmark</Description>
     <Locale>1033</Locale>
     <MoreInfoUrl>http://visualstudiogallery.msdn.microsoft.com/en-us/18cbab57-9b50-42f8-b171-61994fcfdf20</MoreInfoUrl>
@@ -26,8 +26,13 @@
         <Edition>Premium</Edition>
         <Edition>Pro</Edition>
       </VisualStudio>
+      <VisualStudio Version="14.0">
+        <Edition>Ultimate</Edition>
+        <Edition>Premium</Edition>
+        <Edition>Pro</Edition>
+      </VisualStudio>
     </SupportedProducts>
-    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.51" />
+    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.6" />
   </Identifier>
   <References />
   <Content>

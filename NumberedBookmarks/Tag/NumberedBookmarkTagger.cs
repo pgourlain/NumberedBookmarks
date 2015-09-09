@@ -74,7 +74,7 @@ namespace NumberedBookmarks
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException("buffer");
+                throw new ArgumentNullException(nameof(buffer));
             }
 
             return new NumberedBookmarkTagger(buffer) as ITagger<T>;
