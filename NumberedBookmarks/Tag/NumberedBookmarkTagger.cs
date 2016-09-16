@@ -47,10 +47,10 @@ namespace NumberedBookmarks
             {
                 foreach (SnapshotSpan span in spans)
                 {
-                    var line = span.Start.GetContainingLine().LineNumber;
-                    if (manager.GetNumber(line).Any())
+                    //var line = span.Start.GetContainingLine().LineNumber;
+                    if (manager.GetNumber(span.Start).Any())
                     {
-                        yield return new TagSpan<NumberedBookmarkTag>(new SnapshotSpan(span.Start, 1), new NumberedBookmarkTag { Numbers = manager.GetNumber(line).ToArray() });
+                        yield return new TagSpan<NumberedBookmarkTag>(new SnapshotSpan(span.Start, 1), new NumberedBookmarkTag { Numbers = manager.GetNumber(span.Start).ToArray() });
                     }
                 }
             }

@@ -29,7 +29,7 @@ namespace NumberedBookmarks
             }
         }
 
-        public IEnumerable<int> GetNumber(int line)
+        public IEnumerable<int> GetNumber(SnapshotPoint line)
         {
             if (NumberedBookmarksGlobalManager.IsAcrossDocuments)
             {

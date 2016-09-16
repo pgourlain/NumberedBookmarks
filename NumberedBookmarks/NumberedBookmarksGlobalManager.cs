@@ -127,7 +127,7 @@ namespace NumberedBookmarks
         /// <param name="buffer"></param>
         /// <param name="line"></param>
         /// <returns></returns>
-        public static IEnumerable<int> GetNumber(ConcurrentDictionary<int, Bookmark> dico, ITextBuffer buffer, int line)
+        public static IEnumerable<int> GetNumber(ConcurrentDictionary<int, Bookmark> dico, ITextBuffer buffer, SnapshotPoint line)
         {
             if (dico == null)
                 dico = _dico;
@@ -135,7 +135,9 @@ namespace NumberedBookmarks
             {
                 if (item.Buffer == buffer)
                 {
-                    if (item.Line == line)
+                    var lineNo = line.GetContainingLine().LineNumber;
+                    var bmkLineNumber = item.TrackingPoint.GetPoint(line.Snapshot).GetContainingLine().LineNumber;
+                    if (lineNo == bmkLineNumber)
                         yield return item.KeyNumber;
                 }
             }
