@@ -17,7 +17,9 @@ namespace NumberedBookmarks
         public ITextBuffer Buffer { get; set; }
         public int Line { get; set; }
         public int KeyNumber { get; set; }
-        public SnapshotPoint Point { get; set; }
+        //public SnapshotPoint Point { get; set; }
+        //public ITextVersion Version { get; set; }
+        public ITrackingPoint TrackingPoint { get; set; }
     }
 
     /// <summary>
@@ -33,10 +35,13 @@ namespace NumberedBookmarks
                 dico = _dico;
 
             int line = point.GetContainingLine().LineNumber;
+
+            var trackingPoint = buffer.CurrentSnapshot.CreateTrackingPoint(point.Position, PointTrackingMode.Negative);
             Bookmark oldBmk = null;
             if (dico.TryRemove(number, out oldBmk))
             {
-                var newBmk = new Bookmark { Line = line, KeyNumber = number, Point = point, Buffer = buffer };
+
+                var newBmk = new Bookmark { Line = line, KeyNumber = number, Buffer = buffer, TrackingPoint = trackingPoint };
                 if (oldBmk.Line == newBmk.Line)
                 {
                     return null;
@@ -49,7 +54,7 @@ namespace NumberedBookmarks
             }
             else
             {
-                oldBmk = new Bookmark { Line = line, KeyNumber = number, Point = point, Buffer = buffer };
+                oldBmk = new Bookmark { Line = line, KeyNumber = number, Buffer = buffer, TrackingPoint = trackingPoint };
                 dico.TryAdd(number, oldBmk);
             }
             return null;
@@ -75,8 +80,10 @@ namespace NumberedBookmarks
                             doc.Activate();
                             try
                             {
-                                wpfView.Caret.MoveTo(bmk.Point);
-                                wpfView.DisplayTextLineContainingBufferPosition(bmk.Point, wpfView.ViewportHeight / 2, ViewRelativePosition.Top);
+                                var pos = bmk.TrackingPoint.GetPosition(buffer.CurrentSnapshot);
+                                var newSnap = new SnapshotPoint(buffer.CurrentSnapshot, pos);
+                                wpfView.Caret.MoveTo(newSnap);
+                                wpfView.DisplayTextLineContainingBufferPosition(newSnap, wpfView.ViewportHeight / 2, ViewRelativePosition.Top);
                             }
                             catch(Exception ex)
                             {
