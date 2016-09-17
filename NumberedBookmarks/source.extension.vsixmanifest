@@ -1,45 +1,22 @@
-﻿<Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
-  <Identifier Id="NumberedBookmarks.Microsoft.5807ee13-b6e1-464a-927f-c22d0a59c50c">
-    <Name>NumberedBookmarks</Name>
-    <Author>Pierrick Gourlain</Author>
-    <Version>1.4.6</Version>
-    <Description xml:space="preserve">This package provides you the possibility to toogle numbered bookmarks, using shortcuts (ctrl-shift-1, ctrl-shift-2, ... ctrl-shift-0) to place a bookmark and (ctrl-1, ctrl-2, ctrl-3,...ctrl-0) to jump to a specific bookmark</Description>
-    <Locale>1033</Locale>
-    <MoreInfoUrl>http://visualstudiogallery.msdn.microsoft.com/en-us/18cbab57-9b50-42f8-b171-61994fcfdf20</MoreInfoUrl>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="NumberedBookmarks.Microsoft.5807ee13-b6e1-464a-927f-c22d0a59c50c" Version="1.4.6" Language="en-US" Publisher="Pierrick Gourlain" />
+    <DisplayName>NumberedBookmarks</DisplayName>
+    <Description>This package provides you the possibility to toogle numbered bookmarks, using shortcuts (ctrl-shift-1, ctrl-shift-2, ... ctrl-shift-0) to place a bookmark and (ctrl-1, ctrl-2, ctrl-3,...ctrl-0) to jump to a specific bookmark</Description>
+    <MoreInfo>http://visualstudiogallery.msdn.microsoft.com/en-us/18cbab57-9b50-42f8-b171-61994fcfdf20</MoreInfo>
     <Icon>icon.bmp</Icon>
     <PreviewImage>bookmarks.png</PreviewImage>
-    <InstalledByMsi>false</InstalledByMsi>
-    <SupportedProducts>
-      <VisualStudio Version="10.0">
-        <Edition>Pro</Edition>
-        <Edition>Express_All</Edition>
-      </VisualStudio>
-      <VisualStudio Version="11.0">
-        <Edition>Pro</Edition>
-        <Edition>Express_All</Edition>
-      </VisualStudio>
-      <VisualStudio Version="12.0">
-        <Edition>Pro</Edition>
-        <Edition>Express_All</Edition>
-      </VisualStudio>
-      <VisualStudio Version="14.0">
-        <Edition>Pro</Edition>
-        <Edition>Express_All</Edition>
-      </VisualStudio>
-      <VisualStudio Version="15.0">
-        <Edition>Pro</Edition>
-        <Edition>Express_All</Edition>
-      </VisualStudio>
-      <VisualStudio Version="16.0">
-        <Edition>Pro</Edition>
-        <Edition>Express_All</Edition>
-      </VisualStudio>
-    </SupportedProducts>
-    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.6" />
-  </Identifier>
-  <References />
-  <Content>
-    <VsPackage>|%CurrentProject%;PkgdefProjectOutputGroup|</VsPackage>
-    <MefComponent>|%CurrentProject%|</MefComponent>
-  </Content>
-</Vsix>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0]" />
+    <InstallationTarget Version="[10.0,16.0)" Id="Microsoft.VisualStudio.Pro" />
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
+  </Assets>
+</PackageManifest>
